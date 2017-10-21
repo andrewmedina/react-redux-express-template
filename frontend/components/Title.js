@@ -5,7 +5,8 @@ import axios from 'axios';
 const clickHandler = () => {
   console.log("in clickHandler");
   axios.get("https://turntableapp.herokuapp.com/auth/spotify")
-  .then((resp)=>res.send(resp))
+  .then((resp)=>window.open(resp.request.responseURL, "_self"))
+  .then((spotifyResp)=>(<Welcome username={spoifyResp.spotifyId}/> ) )
 }
 
 const Title = ( { name } ) => {
@@ -17,6 +18,14 @@ const Title = ( { name } ) => {
 
           );
 };
+
+const Welcome = ( { username } ) => {
+  return(
+    <div>
+      Welcome {username}!
+    </div>
+  )
+}
 
 Title.propTypes = {
     name: PropTypes.string,
